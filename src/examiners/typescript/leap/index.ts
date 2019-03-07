@@ -13,5 +13,11 @@ export default (code: string): SolutionRecommendation => {
     optional: []
   };
 
+  if (!code) {
+    recommendation.required.push('Your submission doesn\'t contain any actual code.');
+
+    return recommendation;
+  }
+
   return recommendation;
 }
