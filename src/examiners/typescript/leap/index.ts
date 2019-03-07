@@ -19,5 +19,13 @@ export default (code: string): SolutionRecommendation => {
     return recommendation;
   }
 
+  const file = ts.createSourceFile('solution', code, ts.ScriptTarget.ES2015);
+
+  if (file.statements.length === 0) {
+    recommendation.required.push('Your submission doesn\'t contain any actual code.');
+
+    return recommendation;
+  }
+
   return recommendation;
 }
