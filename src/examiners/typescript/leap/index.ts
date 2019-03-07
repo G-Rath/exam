@@ -1,4 +1,5 @@
 import { SolutionRecommendation } from '@src/definitions';
+import ts from 'typescript';
 
 /**
  * Examines TypeScript `code`, submitted as a solution to the `leap` typescript exercise.
