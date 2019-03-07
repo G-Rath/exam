@@ -39,7 +39,7 @@ const createTestCase = (
  * @param {string} ignore
  * @return {Array<TestCase>}
  */
-const bulkCreateCases = (
+const createTestCases = (
   codes: Array<string>,
   required: SolutionRecommendation['required'],
   optional: SolutionRecommendation['optional'],
@@ -50,36 +50,24 @@ const bulkCreateCases = (
 //    might be nice to have a way to attach "comments" about each test case
 export const cases: Array<TestCase> = [
   // region blank submissions
-  createTestCase(
-    '',
-    ['Your submission doesn\'t contain any actual code.'],
-    [],
-    'submission is completely blank'
-  ),
-  createTestCase(
-    `
+  ...createTestCases([
+      '', `
 // export default (year: number): boolean => year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)
-    `,
+`
+    ],
     ['Your submission doesn\'t contain any actual code.'],
-    [],
-    'correct solution, but commented out'
+    []
   ),
   // endregion
   // region "test file submitted" submissions
-  createTestCase(
-    `
+  ...createTestCases([
+      `
 describe('A leap year', () => {
   it('is not very common', () => {
     expect(isLeapYear(2015)).toBeFalsy();
   });
 });
-`,
-    ['It seems you\'ve submitted a test file.'],
-    [],
-    'Sometimes students mistakenly submit the exercises test file (basic)'
-  ),
-  createTestCase(
-    `
+`, `
 import isLeapYear from './leap';
 
 describe('A leap year', () => {
@@ -118,15 +106,14 @@ describe('A leap year', () => {
     });
   });
 });
-`,
+`
+    ],
     ['It seems you\'ve submitted a test file.'],
-    [],
-    'Sometimes students mistakenly submit the exercises test file (complete)'
+    []
   ),
   // endregion
   // region "standard" submissions
-  ...bulkCreateCases(
-    [
+  ...createTestCases([
       `
 function isLeapYear(year: number) {
     // Your code here
@@ -187,14 +174,28 @@ export default isLeapYear
   ),
   // endregion
   // region "correct" submissions
-  createTestCase(
-    `
+  ...createTestCases([
+      `
 function isLeapYear(year: number) {
     return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)
 }
 
 export default isLeapYear
-`,
+`, `
+/**
+ * Checks if the given \`year\` is considered a "leap year" in the Gregorian calendar.
+ *
+ * A year is considered a leap year if it is evenly divisible by 4,
+ * except if that year is also evenly divisible by 100,
+ * in which case it's only a leap year if it's also evenly divisible by 400.
+ *
+ * @param {number} year
+ *
+ * @return {boolean} \`true\` if the given \`year\` is a leap year, otherwise \`false\`.
+ */
+export default (year: number): boolean => year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)
+`
+    ],
     [],
     []
   ),
@@ -213,24 +214,6 @@ export default isLeapYear;
 `,
     [],
     ['You can actually return the result of conditionals in TypeScript.']
-  ),
-  createTestCase(
-    `
-/**
- * Checks if the given \`year\` is considered a "leap year" in the Gregorian calendar.
- *
- * A year is considered a leap year if it is evenly divisible by 4,
- * except if that year is also evenly divisible by 100,
- * in which case it's only a leap year if it's also evenly divisible by 400.
- *
- * @param {number} year
- *
- * @return {boolean} \`true\` if the given \`year\` is a leap year, otherwise \`false\`.
- */
-export default (year: number): boolean => year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)
-`,
-    [],
-    []
   )
   // endregion
 ];
