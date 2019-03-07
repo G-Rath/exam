@@ -1,7 +1,9 @@
 import { SolutionRecommendation } from '@src/definitions';
 import leapExaminer from '@src/examiners/typescript/leap/index.ts';
 import { cases } from '@test/examiners/typescript/leap/test-cases';
-import { expect } from 'chai';
+import chai, { expect } from 'chai';
+
+chai.config.truncateThreshold = 0;
 
 describe('ts/leap', () => {
   it('is a function', () => {
