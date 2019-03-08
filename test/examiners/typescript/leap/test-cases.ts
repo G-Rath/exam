@@ -1,4 +1,5 @@
 import { SolutionRecommendation } from '@src/definitions';
+import { strings, t } from '@src/I18n';
 
 type TestCase = [string, SolutionRecommendation];
 
@@ -55,7 +56,7 @@ export const cases: Array<TestCase> = [
 // export default (year: number): boolean => year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)
 `
     ],
-    ['Your submission doesn\'t contain any actual code.'],
+    [t(strings.generic.no_code_in_submission)],
     []
   ),
   // endregion
@@ -108,7 +109,7 @@ describe('A leap year', () => {
 });
 `
     ],
-    ['It seems you\'ve submitted a test file.'],
+    [t(strings.generic.test_file_submitted)],
     []
   ),
   // endregion
@@ -158,7 +159,7 @@ export const isLeap = (year: number) => {
 };
 `
     ],
-    ['See if you can eliminate those `if` statements by mixing TypeScripts [logical operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_Operators).'],
+    [t(strings.typescript.leap.required.mix_logical_operators_instead_of_ifs)],
     []
   ),
   createTestCase(
@@ -169,7 +170,7 @@ function isLeapYear( year: number ) {
 
 export default isLeapYear
 `,
-    ['You\'re checking the same condition more than once. See if you can eliminate that extra conditional check.'],
+    [t(strings.typescript.leap.required.eliminate_duplicate_conditional)],
     []
   ),
   // endregion
@@ -213,7 +214,7 @@ function isLeapYear(year: number): boolean {
 export default isLeapYear;
 `,
     [],
-    ['You can actually return the result of conditionals in TypeScript.']
+    [t(strings.typescript.leap.optional.can_return_conditionals)]
   )
   // endregion
 ];
