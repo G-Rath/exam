@@ -1,3 +1,4 @@
+import typescript from '@src/examiners/typescript/i18n-strings';
 import Polyglot from 'node-polyglot';
 import { createProxy, getPath, ObjProxyArg } from 'ts-object-path';
 
@@ -5,7 +6,8 @@ export const phrases = {
   generic: {
     no_code_in_submission: 'Your submission doesn\'t contain any actual code.',
     test_file_submitted: 'It seems you\'ve submitted a test file.'
-  }
+  },
+  typescript
 };
 
 export const strings = createProxy<typeof phrases>();
